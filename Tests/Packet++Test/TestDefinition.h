@@ -243,3 +243,6 @@ PTF_TEST_CASE(VrrpCreateAndEditTest);
 
 //Implemented in CotpTests.cpp
 PTF_TEST_CASE(CotpLayerTest);
+
+//Implemented in ModbusTcpTests.cpp
+PTF_TEST_CASE(ModbusTcpLayerTest);

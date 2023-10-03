@@ -25,6 +25,7 @@ add_library(
   src/IPv6Layer.cpp
   src/Layer.cpp
   src/LLCLayer.cpp
+  src/ModbusTcpLayer.cpp
   src/MplsLayer.cpp
   src/NdpLayer.cpp
   src/NflogLayer.cpp
@@ -90,6 +91,7 @@ set(public_headers
     header/IPv6Layer.h
     header/Layer.h
     header/LLCLayer.h
+    header/ModbusTcpLayer.h
     header/MplsLayer.h
     header/NullLoopbackLayer.h
     header/NdpLayer.h
