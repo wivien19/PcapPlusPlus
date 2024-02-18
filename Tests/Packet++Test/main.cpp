@@ -324,5 +324,7 @@ int main(int argc, char* argv[])
 	PTF_RUN_TEST(SmtpCreationTests, "smtp");
 	PTF_RUN_TEST(SmtpEditTests, "smtp");
 
+	PTF_RUN_TEST(PnDcpTest, "pn_dcp");
+
 	PTF_END_RUNNING_TESTS;
 }

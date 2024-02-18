@@ -64,6 +64,8 @@ namespace pcpp
 #define PCPP_ETHERTYPE_IEEE_802_1AD  0x88A8
 	/** Wake on LAN */
 #define PCPP_ETHERTYPE_WAKE_ON_LAN   0x0842
+	/** PN-DCP */
+#define PCPP_PN_DCP   0x8892
 
 
 	/**

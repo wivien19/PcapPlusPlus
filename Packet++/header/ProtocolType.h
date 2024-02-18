@@ -343,6 +343,11 @@ namespace pcpp
 	const ProtocolType SMTP = 54;
 
 	/**
+	 * PN-DCP protocol
+	 */
+	const ProtocolType PNDCP = 55;
+
+	/**
 	 * An enum representing OSI model layers
 	 */
 	enum OsiModelLayer

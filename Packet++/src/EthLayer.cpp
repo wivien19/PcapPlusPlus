@@ -6,6 +6,7 @@
 #include "PayloadLayer.h"
 #include "ArpLayer.h"
 #include "VlanLayer.h"
+#include "PnDcpLayer.h"
 #include "PPPoELayer.h"
 #include "MplsLayer.h"
 #include "WakeOnLanLayer.h"
@@ -74,6 +75,11 @@ void EthLayer::parseNextLayer()
 	case PCPP_ETHERTYPE_WAKE_ON_LAN:
 		m_NextLayer = WakeOnLanLayer::isDataValid(payload, payloadLen)
 			? static_cast<Layer*>(new WakeOnLanLayer(payload, payloadLen, this, m_Packet))
+			: static_cast<Layer*>(new PayloadLayer(payload, payloadLen, this, m_Packet));
+		break;
+	case PCPP_PN_DCP:
+		m_NextLayer = PnDcpLayer::isDataValid(payload, payloadLen)
+			? static_cast<Layer*>(new PnDcpLayer(payload, payloadLen, this, m_Packet))
 			: static_cast<Layer*>(new PayloadLayer(payload, payloadLen, this, m_Packet));
 		break;
 	default:

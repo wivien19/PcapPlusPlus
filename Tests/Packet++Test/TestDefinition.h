@@ -253,3 +253,6 @@ PTF_TEST_CASE(S7CommLayerCreationTest);
 PTF_TEST_CASE(SmtpParsingTests);
 PTF_TEST_CASE(SmtpCreationTests);
 PTF_TEST_CASE(SmtpEditTests);
+
+// Implemented in PnDcpTests.cpp
+PTF_TEST_CASE(PnDcpTest);
