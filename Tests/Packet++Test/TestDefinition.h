@@ -256,3 +256,6 @@ PTF_TEST_CASE(SmtpEditTests);
 
 // Implemented in HartIpTests.cpp
 PTF_TEST_CASE(HartIpTests);
+
+// Implemented in PnDcpTests.cpp
+PTF_TEST_CASE(PnDcpTest);

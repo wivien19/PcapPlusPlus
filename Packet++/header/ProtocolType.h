@@ -348,6 +348,11 @@ namespace pcpp
 	const ProtocolType HARTIP = 55;
 
 	/**
+	 * PN-DCP protocol
+	 */
+	const ProtocolType PNDCP = 55;
+
+	/**
 	 * An enum representing OSI model layers
 	 */
 	enum OsiModelLayer
