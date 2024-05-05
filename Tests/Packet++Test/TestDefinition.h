@@ -259,3 +259,6 @@ PTF_TEST_CASE(HartIpTests);
 
 // Implemented in PnDcpTests.cpp
 PTF_TEST_CASE(PnDcpTest);
+
+//Implemented in ModbusTcpTests.cpp
+PTF_TEST_CASE(ModbusTcpLayerTest);

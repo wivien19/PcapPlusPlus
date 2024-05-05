@@ -353,6 +353,11 @@ namespace pcpp
 	const ProtocolType PNDCP = 55;
 
 	/**
+	 * MODBUS TCP/IP ADU protocol
+	 */
+	const ProtocolType MODBUSTCP = 56;
+
+	/**
 	 * An enum representing OSI model layers
 	 */
 	enum OsiModelLayer

@@ -325,5 +325,8 @@ int main(int argc, char *argv[])
 	PTF_RUN_TEST(HartIpTests, "hartip");
 	
 	PTF_RUN_TEST(PnDcpTest, "pn_dcp");
+
+	PTF_RUN_TEST(ModbusTcpLayerTest, "modbustcp");
+	
 	PTF_END_RUNNING_TESTS;
 }

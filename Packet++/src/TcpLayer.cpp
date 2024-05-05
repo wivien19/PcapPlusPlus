@@ -19,6 +19,7 @@
 #include "HartIp.h"
 #include "PacketUtils.h"
 #include "Logger.h"
+#include "ModbusTcpLayer.h"
 #include <string.h>
 #include <sstream>
 
@@ -388,6 +389,8 @@ void TcpLayer::parseNextLayer()
 		m_NextLayer = new SmtpRequestLayer(payload, payloadLen, this, m_Packet);
 	else if (((HartIp::isHartIpPort(portSrc) || HartIp::isHartIpPort(portDst)) && HartIp::isDataValid(payload, payloadLen)))
 		m_NextLayer = new HartIp(payload, payloadLen, this, m_Packet);
+	else if (ModbusTcpLayer::isDataValid(payload, payloadLen) && ModbusTcpLayer::isModbusTcpPort(portSrc, portDst))
+			m_NextLayer = new ModbusTcpLayer(payload, payloadLen, this, m_Packet);
 	else
 		m_NextLayer = new PayloadLayer(payload, payloadLen, this, m_Packet);
 }
