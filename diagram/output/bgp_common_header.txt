@@ -1,0 +1,48 @@
+protocol name: BgpLayer;
+bgp_common_header
+pragma pack(push, 1)
+	struct bgp_common_header
+	{
+		/** 16-octet marker */
+		uint8_t marker[16];
+		/** Total length of the message, including the header */
+		uint16_t length;
+		/** BGP message type */
+		uint8_t messageType;
+	};
+	#pragma pack
+pragma pack(push, 1)
+	typedef struct bgp_open_message : bgp_common_header
+	{
+		/** BGP version number */
+		uint8_t version;
+		/** Autonomous System number of the sender */
+		uint16_t myAutonomousSystem;
+		/** The number of seconds the sender proposes for the value of the Hold Timer */
+		uint16_t holdTime;
+		/** BGP Identifier of the sender */
+		uint32_t bgpId;
+		/** The total length of the Optional Parameters field */
+		uint8_t optionalParameterLength;
+	} bgp_open_message;
+	#pragma pack
+pragma pack(push, 1)
+	typedef struct bgp_notification_message : bgp_common_header
+	{
+		/** BGP notification error code */
+		uint8_t errorCode;
+		/** BGP notification error sub-code */
+		uint8_t errorSubCode;
+	} bgp_notification_message;
+	#pragma pack
+pragma pack(push, 1)
+	typedef struct bgp_route_refresh_message : bgp_common_header
+	{
+		/** Address Family Identifier */
+		uint16_t afi;
+		/** Reserved field */
+		uint8_t reserved;
+		/** Subsequent Address Family Identifier */
+		uint8_t safi;
+	} bgp_route_refresh_message;
+	#pragma pack

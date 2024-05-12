@@ -1,0 +1,19 @@
+protocol name: PnDcpLayer;
+pndcphdr
+pragma pack(push, 1)
+	struct pndcphdr
+	{
+		/** frame id */
+		uint16_t frameId;
+		/** service id */
+		uint8_t serviceId;
+		/** service tyoe */
+		uint8_t serviceType;
+		/** identification of the transaction */
+		uint32_t xid;
+		/** response delay*/
+		uint16_t responseDelay;
+		/** number of bytes in subsequent blocks */
+		uint16_t dcpDataLength;
+	};
+#pragma pack

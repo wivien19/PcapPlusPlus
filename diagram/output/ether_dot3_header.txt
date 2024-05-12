@@ -1,0 +1,13 @@
+protocol name: EthDot3Layer;
+ether_dot3_header
+pragma pack(push, 1)
+	struct ether_dot3_header
+	{
+		/** Destination MAC */
+		uint8_t dstMac[6];
+		/** Source MAC */
+		uint8_t srcMac[6];
+		/** EtherType */
+		uint16_t length;
+	};
+#pragma pack

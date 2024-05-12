@@ -1,0 +1,11 @@
+protocol name: WakeOnLanLayer;
+wol_header
+pragma pack(push, 1)
+		struct wol_header
+		{
+			/// Sync stream (FF FF FF FF FF FF)
+			uint8_t sync[6];
+			/// Target MAC address repeated 16 times
+			uint8_t addrBody[6 * 16];
+		};
+#pragma pack

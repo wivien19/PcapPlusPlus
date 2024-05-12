@@ -1,0 +1,64 @@
+protocol name: TcpOption;
+tcphdr
+pragma pack(push,1)
+	struct tcphdr
+	{
+		/** Source TCP port */
+		uint16_t portSrc;
+		/** Destination TCP port */
+		uint16_t portDst;
+		/** Sequence number */
+		uint32_t sequenceNumber;
+		/** Acknowledgment number */
+		uint32_t ackNumber;
+#if (BYTE_ORDER == LITTLE_ENDIAN)
+		uint16_t reserved:4,
+		/** Specifies the size of the TCP header in 32-bit words */
+		dataOffset:4,
+		/** FIN flag */
+		finFlag:1,
+		/** SYN flag */
+		synFlag:1,
+		/** RST flag */
+		rstFlag:1,
+		/** PSH flag */
+		pshFlag:1,
+		/** ACK flag */
+		ackFlag:1,
+		/** URG flag */
+		urgFlag:1,
+		/** ECE flag */
+		eceFlag:1,
+		/** CWR flag */
+		cwrFlag:1;
+#elif (BYTE_ORDER == BIG_ENDIAN)
+		/** Specifies the size of the TCP header in 32-bit words */
+		uint16_t dataOffset:4,
+		reserved:4,
+		/** CWR flag */
+		cwrFlag:1,
+		/** ECE flag */
+		eceFlag:1,
+		/** URG flag */
+		urgFlag:1,
+		/** ACK flag */
+		ackFlag:1,
+		/** PSH flag */
+		pshFlag:1,
+		/** RST flag */
+		rstFlag:1,
+		/** SYN flag */
+		synFlag:1,
+		/** FIN flag */
+		finFlag:1;
+#else
+#error	"Endian is not LE nor BE..."
+#endif
+		/** The size of the receive window, which specifies the number of window size units (by default, bytes) */
+		uint16_t	windowSize;
+		/** The 16-bit checksum field is used for error-checking of the header and data */
+		uint16_t	headerChecksum;
+		/** If the URG flag (@ref tcphdr#urgFlag) is set, then this 16-bit field is an offset from the sequence number indicating the last urgent data byte */
+		uint16_t	urgentPointer;
+	};
+#pragma pack

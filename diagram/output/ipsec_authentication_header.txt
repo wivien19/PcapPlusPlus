@@ -1,0 +1,26 @@
+protocol name: AuthenticationHeaderLayer;
+ipsec_authentication_header
+pragma pack(push, 1)
+	struct ipsec_authentication_header
+	{
+		/** Type of the next header */
+		uint8_t nextHeader;
+		/** The length of the Authentication Header in 4-octet units, minus 2 */
+		uint8_t payloadLen;
+		/** Reserved */
+		uint16_t reserved;
+		/** Security Parameters Index */
+		uint32_t spi;
+		/** Sequence Number */
+		uint32_t sequenceNumber;
+	};
+#pragma pack
+pragma pack(push, 1)
+	struct ipsec_esp
+	{
+		/** Security Parameters Index */
+		uint32_t spi;
+		/** Sequence Number */
+		uint32_t sequenceNumber;
+	};
+#pragma pack

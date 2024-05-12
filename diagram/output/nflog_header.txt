@@ -1,0 +1,13 @@
+protocol name: NflogLayer;
+nflog_header
+pragma pack(push, 1)
+	struct nflog_header
+	{
+		/** A Linux AF_ value, so it's 2 for IPv4 and 10 for IPv6 */
+		uint8_t addressFamily;
+		/** The version field is 0 for the current version of the pseudo-header */
+		uint8_t version;
+		/** The network byte order (big-endian) */
+		uint16_t resourceId;
+	};
+#pragma pack

@@ -1,0 +1,26 @@
+protocol name: ModbusTcpLayer;
+modbustcphdr
+pragma pack(push, 1)
+	typedef struct
+	{
+		/** Identification of a MODBUS Request / Response transaction */
+		uint16_t transactionIdentifier;
+		/** Protocol identifier, in this case the value is alway 0x00 */
+		uint16_t protocolIdentifier;
+		/** Number of following bytes */
+		uint16_t length;
+		/** Identification of a remote slave connected on a serial line or on other buses */
+		uint8_t unitIdentifier;
+		/** Function code */
+		uint8_t functionCode;
+		/** Reference number */
+		uint16_t referenceNumber;
+		/** Bit count */
+		uint16_t bitCount;
+		/** Byte count */
+		uint8_t byteCount;
+		/** Data */
+		uint8_t data;
+
+	} modbustcphdr;
+#pragma pack

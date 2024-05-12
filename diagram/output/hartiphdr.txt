@@ -1,0 +1,19 @@
+protocol name: HartIp;
+hartiphdr
+pragma pack(push, 1)
+	struct hartiphdr
+	{
+		/** version */
+		uint8_t version;
+		/** message type */
+		uint8_t msgType;
+		/** message identifier */
+		uint8_t msgId;
+		/** status */
+		uint8_t status;
+		/** sequence number */
+		uint16_t seqNum;
+		/** byte count */
+		uint16_t byteCount;
+	};
+#pragma pack

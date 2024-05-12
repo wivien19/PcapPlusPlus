@@ -1,0 +1,13 @@
+protocol name: TpktLayer;
+tpkthdr
+pragma pack(push, 1)
+	struct tpkthdr
+	{
+		/** message version */
+		uint8_t version;
+		/** message reserved */
+		uint8_t reserved;
+		/** message length */
+		uint16_t length;
+	};
+#pragma pack

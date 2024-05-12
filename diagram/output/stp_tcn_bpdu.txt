@@ -1,0 +1,81 @@
+protocol name: StpLayer;
+stp_tcn_bpdu
+pragma pack(push, 1)
+	struct stp_tcn_bpdu
+	{
+		/// Protocol ID. Fixed at 0x0, which represents IEEE 802.1d
+		uint16_t protoId;
+		/// Protocol version. 0x0 for STP, 0x2 for RSTP, 0x3 for MSTP
+		uint8_t version;
+		/// Type of the BPDU. 0x0 for configuration, 0x2 for RSTP/MSTP, 0x80 for TCN
+		uint8_t type;
+	};
+#pragma pack
+pragma pack(push, 1)
+	struct stp_conf_bpdu : stp_tcn_bpdu
+	{
+		/// Flag for indicate purpose of BPDU
+		uint8_t flag;
+		/// Root bridge ID
+		uint64_t rootId;
+		/// Cost of path
+		uint32_t pathCost;
+		/// Bridge ID
+		uint64_t bridgeId;
+		/// Port ID
+		uint16_t portId;
+		/// Age of the BPDU
+		uint16_t msgAge;
+		/// Maximum age of the BPDU
+		uint16_t maxAge;
+		/// BPDU transmission interval
+		uint16_t helloTime;
+		/// Delay for STP
+		uint16_t forwardDelay;
+	};
+#pragma pack
+pragma pack(push, 1)
+	struct rstp_conf_bpdu : stp_conf_bpdu
+	{
+		/// Version1 length. The value is 0x0
+		uint8_t version1Len;
+	};
+#pragma pack
+pragma pack(push, 1)
+	struct mstp_conf_bpdu : rstp_conf_bpdu
+	{
+		/// Version3 length.
+		uint16_t version3Len;
+		/// Configuration id format selector
+		uint8_t mstConfigFormatSelector;
+		/// Configuration id name
+		uint8_t mstConfigName[32];
+		/// Configuration id revision
+		uint16_t mstConfigRevision;
+		/// Configuration id digest
+		uint8_t mstConfigDigest[16];
+		/// CIST internal root path cost
+		uint32_t irpc;
+		/// CIST bridge id
+		uint64_t cistBridgeId;
+		/// CIST remaining hop count
+		uint8_t remainId;
+	};
+#pragma pack
+pragma pack(push, 1)
+	struct msti_conf_msg
+	{
+		/// MSTI flags
+		uint8_t flags;
+		/// Regional root switching id (Priority (4 bits) + ID (12 bits) + Regional root (48 bits - MAC address))
+		uint64_t regionalRootId;
+		/// Total path cost from local port to regional port
+		uint32_t pathCost;
+		/// Priority value of switching device
+		uint8_t bridgePriority;
+		/// Priority value of port
+		uint8_t portPriority;
+		/// Remaining hops of BPDU
+		uint8_t remainingHops;
+	};
+#pragma pack

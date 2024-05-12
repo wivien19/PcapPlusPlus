@@ -1,0 +1,95 @@
+protocol name: OptionType;
+someipsdhdroptionsbase
+pragma pack(push, 1)
+	struct someipsdhdroptionsbase
+	{
+		/** Length - excluding the 16 bit Length field and the 8 bit type flag */
+		uint16_t length;
+		/** Type */
+		uint8_t type;
+		/** Reserved */
+		uint8_t reserved;
+	};
+#pragma pack
+pragma pack(push, 1)
+	struct someipsdhdroptionsipv4 : someipsdhdroptionsbase
+	{
+		/* IPv4-Address field */
+		uint32_t ipv4Address;
+		/* Reserved */
+		// cppcheck-suppress duplInheritedMember
+		uint8_t reserved;
+		/* Layer 4 Protocol field (L4-Proto) - Either UDP or TCP */
+		SomeIpSdProtocolType l4Protocol;
+		/* Port number of UDP or TCP */
+		uint16_t portNumber;
+	};
+#pragma pack
+pragma pack(push, 1)
+	struct someipsdhdroptionsipv6 : someipsdhdroptionsbase
+	{
+		/* IPv6-Address field */
+		uint8_t ipv6Address[16];
+		/* Reserved */
+		// cppcheck-suppress duplInheritedMember
+		uint8_t reserved;
+		/* Layer 4 Protocol field (L4-Proto) - Either UDP or TCP */
+		SomeIpSdProtocolType l4Protocol;
+		/* Port number of UDP or TCP */
+		uint16_t portNumber;
+	};
+#pragma pack
+pragma pack(push, 1)
+	struct someipsdhdroptionsload : someipsdhdroptionsbase
+	{
+		/* Priority field */
+		uint16_t priority;
+		/* Weight field */
+		uint16_t weight;
+	};
+#pragma pack
+pragma pack(push, 1)
+	struct someipsdhdrentry
+	{
+		/** Type */
+		uint8_t type;
+		/** Index 1st option */
+		uint8_t indexFirstOption;
+		/** Index 2nd option */
+		uint8_t indexSecondOption;
+#if (BYTE_ORDER == LITTLE_ENDIAN)
+		uint8_t
+			/** Numbers of Option #2 (4bit) */
+			nrOpt2 : 4,
+			/** Numbers of Option #1 (4bit) */
+			nrOpt1 : 4;
+#else
+		uint8_t
+			/** Numbers of Option #1 (4bit) */
+			nrOpt1 : 4,
+			/** Numbers of Option #2 (4bit) */
+			nrOpt2 : 4;
+#endif
+		/** Service ID */
+		uint16_t serviceID;
+		/** Instance ID */
+		uint16_t instanceID;
+		/** Major Version (8 bit) + TTL (24 bit) */
+		uint32_t majorVersion_ttl;
+		/** Minor Version (Service Entry Type) or Counter + Eventgroup ID (Eventgroup Entry Type) */
+		uint32_t data;
+	};
+#pragma pack
+pragma pack(push, 1)
+	struct someipsdhdr : someiphdr
+	{
+		/** Flags (8 bit) */
+		uint8_t flags;
+		/** Reserved1 field (Bits 0-7 of 24-bits reserved field) */
+		uint8_t reserved1;
+		/** Reserved2 field (Bits 8-15 of 24-bits reserved field) */
+		uint8_t reserved2;
+		/** Reserved3 field (Bits 16-23 of 24-bits reserved field) */
+		uint8_t reserved3;
+	};
+#pragma pack

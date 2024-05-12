@@ -1,0 +1,33 @@
+protocol name: SomeIpLayer;
+someiphdr
+pragma pack(push, 1)
+	struct someiphdr
+	{
+		/** Service ID */
+		uint16_t serviceID;
+		/** Method ID. Most significant bit 0 when E2E communication. 1 when SOME/IP event */
+		uint16_t methodID;
+		/** Length. Also covers payload. Excludes serviceID, methodID and length field itself */
+		uint32_t length;
+		/** Client ID */
+		uint16_t clientID;
+		/** Session ID */
+		uint16_t sessionID;
+		/** Protocol Version */
+		uint8_t protocolVersion;
+		/** Interface Version */
+		uint8_t interfaceVersion;
+		/** Message Type */
+		uint8_t msgType;
+		/** Return Code */
+		uint8_t returnCode;
+	};
+#pragma pack
+pragma pack(push, 1)
+	struct someiptphdr : someiphdr
+	{
+		/** Contains the offset and the more segments flag. 28 bit offset field measured in 16 bytes + 3 bit reserved +
+		 * 1 bit more segments flag */
+		uint32_t offsetAndFlag;
+	};
+#pragma pack

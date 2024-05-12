@@ -1,0 +1,10 @@
+protocol name: SSHLayer;
+ssh_message_base
+pragma pack(push, 1)
+		struct ssh_message_base
+		{
+			uint32_t packetLength;
+			uint8_t paddingLength;
+			uint8_t messageCode;
+		};
+		#pragma pack

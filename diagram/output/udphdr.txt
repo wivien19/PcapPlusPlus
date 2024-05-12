@@ -1,0 +1,15 @@
+protocol name: UdpLayer;
+udphdr
+pragma pack(push,1)
+	struct udphdr
+	{
+		/** Source port */
+		uint16_t portSrc;
+		/** Destination port */
+		uint16_t portDst;
+		/** Length of header and payload in bytes */
+		uint16_t length;
+		/**  Error-checking of the header and data */
+		uint16_t headerChecksum;
+	};
+#pragma pack
